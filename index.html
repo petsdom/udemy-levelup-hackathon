@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7f9fa;
+            color: #1c1d1f;
+            line-height: 1.6;
+        }
+
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            max-width: 1340px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #a435f0;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex: 1;
+            margin: 0 1.5rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #1c1d1f;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            background-color: #f7f9fa;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #1c1d1f;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .login-btn,
+        .signup-btn {
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9rem;
+
+        }
+
+        .login-btn {
+            border: 1px solid #1c1d1f;
+            background: transparent;
+            color: #1c1d1f;
+            margin-left: 1rem;
+        }
+
+        .signup-btn {
+            background-color: #a435f0;
+            color: white;
+            border: none;
+            margin-left: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #1c1d1f;
+            color: white;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1340px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            max-width: 500px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+        }
+
+        .hero-img {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 300px;
+            background-color: #444;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            z-index: 1;
+        }
+
+        /* Course Categories */
+        .categories {
+            padding: 3rem 2rem;
+            max-width: 1340px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .category-list {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+        }
+
+        .category-item {
+            min-width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            background-color: #f7f9fa;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+            border: 1px solid #ddd;
+        }
+
+        .category-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Popular Courses */
+        .courses {
+            padding: 2rem 2rem 4rem;
+            max-width: 1340px;
+            margin: 0 auto;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-img {
+            height: 150px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        .course-content {
+            padding: 1.2rem;
+        }
+
+        .course-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .course-instructor {
+            font-size: 0.85rem;
+            color: #6a6f73;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-score {
+            color: #b4690e;
+            font-weight: 600;
+            margin-right: 0.3rem;
+        }
+
+        .rating-stars {
+            color: #eb8a2f;
+            margin-right: 0.3rem;
+        }
+
+        .rating-count {
+            font-size: 0.8rem;
+            color: #6a6f73;
+        }
+
+        .course-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .bestseller-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background-color: #eceb98;
+            color: #3d3c0a;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .features {
+            background-color: #f7f9fa;
+            padding: 4rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1340px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #a435f0;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: #6a6f73;
+        }
+
+        
+        footer {
+            background-color: #1c1d1f;
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1340px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1340px;
+            margin: 2rem auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #a435f0;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+
+        
+        .enroll-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #a435f0;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .enroll-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .compare-mode .course-card {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .compare-mode .course-card:hover {
+            opacity: 1;
+            outline: 2px solid #a435f0;
+        }
+
+        .comparison-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+
+
+        .comparison-preview {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 300px;
+            display: none;
+        }
+
+        .selected-courses {
+            margin-bottom: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .selected-course-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .remove-course {
+            color: red;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+        .preview-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .preview-buttons button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .compare-btn {
+            background-color: #a435f0;
+            color: white;
+        }
+
+        .cancel-btn {
+            background-color: #e6e6e6;
+        }
+
+        .course-card.selected {
+            border: 2px solid #a435f0;
+            opacity: 1;
+        }
+
+        
+        .comparison-modal {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background-color: #f7f9fa;
+            position: sticky;
+            top: 0;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f8f4ff;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f7f9fa;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6a6f73;
+            padding: 5px;
+        }
+
+        .feature-label {
+            font-weight: 600;
+            color: #1c1d1f;
+        }
+
+        .bestseller-check {
+            color: #a435f0;
+            font-size: 1.2rem;
+        }
+
+        .rating-highlight {
+            color: #b4690e;
+            font-weight: 600;
+        }
+
+        .price-highlight {
+            color: #a435f0;
+            font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1000px) {
+            .hero-img {
+                display: none;
+            }
+
+            .hero h1 {
+                max-width: 100%;
+            }
+
+            .hero p {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .search-bar {
+                order: 3;
+                margin: 1rem 0;
+                width: 100%;
+            }
+
+            .nav-links a:not(.login-btn):not(.signup-btn) {
+                display: none;
+            }
+        }
+
+        /* Shopping Cart */
+        .cart-icon {
+            position: relative;
+            margin-left: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #a435f0;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Wishlist Button */
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <button class="menu-toggle">☰</button>
+            <a href="#" class="logo">LearnHub</a>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for anything">
+                <div class="search-icon">🔍</div>
+            </div>
+            <div class="nav-links">
+                <a href="#">Business</a>
+                <a href="#">Teaching</a>
+                <div class="cart-icon">
+                    🛒
+                    <div class="cart-badge">2</div>
+                </div>
+                <button class="login-btn">Log in</button>
+                <button class="signup-btn">Sign up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Skills for your present (and your future)</h1>
+            <p>Build the skills to make things happen. Courses from $14.99 through June 22nd.</p>
+            <button class="signup-btn">Get started</button>
+        </div>
+    </section>
+
+    <section class="courses">
+        <h1>Popular Course Categories</h1>
+        <h2 class="section-title">Web Development</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">2025 Complete Web Development Bootcamp</h3>
+                    <p class="course-instructor">Dr. Angela Yu</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.7</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(236,594)</span>
+                    </div>
+                    <div class="bestseller-badge">Bestseller</div>
+                    <p class="course-price">$14.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">Python for Data Science and Machine Learning</h3>
+                    <p class="course-instructor">Jose Portilla</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.6</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(147,521)</span>
+                    </div>
+                    <p class="course-price">$13.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">React & Redux Complete Guide</h3>
+                    <p class="course-instructor">Maximilian Schwarzmüller</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.8</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(98,237)</span>
+                    </div>
+                    <div class="bestseller-badge">Bestseller</div>
+                    <p class="course-price">$15.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">Advanced UI/UX Design Masterclass</h3>
+                    <p class="course-instructor">Daniel Scott</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.5</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(42,872)</span>
+                    </div>
+                    <p class="course-price">$12.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+            </div>
+        </div>
+        <h2 class="section-title">Data Science</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">2025 Complete Web Development Bootcamp</h3>
+                    <p class="course-instructor">Dr. Angela Yu</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.7</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(236,594)</span>
+                    </div>
+                    <div class="bestseller-badge">Bestseller</div>
+                    <p class="course-price">$14.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">Python for Data Science and Machine Learning</h3>
+                    <p class="course-instructor">Jose Portilla</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.6</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(147,521)</span>
+                    </div>
+                    <p class="course-price">$13.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">React & Redux Complete Guide</h3>
+                    <p class="course-instructor">Maximilian Schwarzmüller</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.8</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(98,237)</span>
+                    </div>
+                    <div class="bestseller-badge">Bestseller</div>
+                    <p class="course-price">$15.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">Advanced UI/UX Design Masterclass</h3>
+                    <p class="course-instructor">Daniel Scott</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.5</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(42,872)</span>
+                    </div>
+                    <p class="course-price">$12.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+            </div>
+        </div>
+        <h2 class="section-title">App Development</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">2025 Complete Web Development Bootcamp</h3>
+                    <p class="course-instructor">Dr. Angela Yu</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.7</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(236,594)</span>
+                    </div>
+                    <div class="bestseller-badge">Bestseller</div>
+                    <p class="course-price">$14.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">Python for Data Science and Machine Learning</h3>
+                    <p class="course-instructor">Jose Portilla</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.6</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(147,521)</span>
+                    </div>
+                    <p class="course-price">$13.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">React & Redux Complete Guide</h3>
+                    <p class="course-instructor">Maximilian Schwarzmüller</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.8</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(98,237)</span>
+                    </div>
+                    <div class="bestseller-badge">Bestseller</div>
+                    <p class="course-price">$15.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+            </div>
+            <div class="course-card">
+                <div class="course-img">Course Image</div>
+                <button class="wishlist-btn">❤️</button>
+                <div class="course-content">
+                    <h3 class="course-title">Advanced UI/UX Design Masterclass</h3>
+                    <p class="course-instructor">Daniel Scott</p>
+                    <div class="course-rating">
+                        <span class="rating-score">4.5</span>
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-count">(42,872)</span>
+                    </div>
+                    <p class="course-price">$12.99</p>
+                </div>
+                <button class="enroll-btn">+</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>LearnHub Business</h3>
+                <ul class="footer-links">
+                    <li><a href="#">LearnHub for Teams</a></li>
+                    <li><a href="#">LearnHub for Enterprise</a></li>
+                    <li><a href="#">Get the app</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Teach on LearnHub</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Become an instructor</a></li>
+                    <li><a href="#">Teaching academy</a></li>
+                    <li><a href="#">Instructor community</a></li>
+                    <li><a href="#">Affiliate program</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help and Support</a></li>
+                    <li><a href="#">Frequently asked questions</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">Terms of service</a></li>
+                    <li><a href="#">Cookie settings</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Development</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Finance & Accounting</a></li>
+                    <li><a href="#">IT & Software</a></li>
+                    <li><a href="#">Office Productivity</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Marketing</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">LearnHub</div>
+            <div class="footer-copyright">© 2025 LearnHub, Inc.</div>
+        </div>
+    </footer>
+
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+
+            // Course cards interaction
+            const courseCards = document.querySelectorAll('.course-card');
+            courseCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    
+                    alert('Course details will open here!');
+                });
+            });
+
+            // Wishlist buttons
+            const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+            wishlistBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation(); // Prevent card click
+                    this.innerHTML = this.innerHTML === '❤️' ? '💖' : '❤️';
+                    alert('Course added to wishlist!');
+                });
+            });
+
+            // Shopping cart interaction
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.addEventListener('click', function () {
+                alert('Shopping cart will open here!');
+            });
+
+            // Category selection
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const category = this.querySelector('.category-name').textContent;
+                    alert(`Browsing ${category} courses!`);
+                });
+            });
+
+            // Search functionality
+            const searchBar = document.querySelector('.search-bar input');
+            const searchIcon = document.querySelector('.search-icon');
+
+            function performSearch() {
+                const searchTerm = searchBar.value.trim();
+                if (searchTerm) {
+                    alert(`Searching for: ${searchTerm}`);
+                }
+            }
+
+            searchIcon.addEventListener('click', performSearch);
+            searchBar.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Sign-up and login buttons
+            const signupBtn = document.querySelectorAll('.signup-btn');
+            const loginBtn = document.querySelector('.login-btn');
+
+            signupBtn.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    alert('Sign-up form will open here!');
+                });
+            });
+
+            loginBtn.addEventListener('click', function () {
+                alert('Login form will open here!');
+            });
+        });
+
+        
+        let compareMode = false;
+        let firstCourse = null;
+        let secondCourse = null;
+
+        let selectedCourses = new Set()
+
+        const previewContainer = document.createElement('div');
+        previewContainer.className = 'comparison-preview';
+        previewContainer.innerHTML = `
+    <div class="selected-courses"></div>
+    <div class="preview-buttons">
+        <button class="compare-btn">Compare Courses</button>
+        <button class="cancel-btn">Cancel</button>
+    </div>
+`;
+        document.body.appendChild(previewContainer);
+
+        // Update the enroll button click handlers
+        const enrollBtns = document.querySelectorAll('.enroll-btn');
+        enrollBtns.forEach(btn => {
+            btn.innerHTML = '⚖️';
+            btn.title = 'Compare this course';
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const courseCard = this.closest('.course-card');
+
+                if (selectedCourses.has(courseCard)) {
+                    // Deselect course
+                    selectedCourses.delete(courseCard);
+                    courseCard.classList.remove('selected');
+                } else {
+                    // Select course
+                    selectedCourses.add(courseCard);
+                    courseCard.classList.add('selected');
+                }
+
+                updatePreviewPanel();
+            });
+        });
+
+        function extractCourseDetails(courseCard) {
+            return {
+                title: courseCard.querySelector('.course-title').textContent,
+                instructor: courseCard.querySelector('.course-instructor').textContent,
+                rating: courseCard.querySelector('.rating-score').textContent,
+                reviewCount: courseCard.querySelector('.rating-count').textContent,
+                price: courseCard.querySelector('.course-price').textContent,
+                isBestseller: courseCard.querySelector('.bestseller-badge') !== null
+            };
+        }
+        // Update the enroll button click handlers
+
+        function updatePreviewPanel() {
+            const selectedCoursesContainer = previewContainer.querySelector('.selected-courses');
+            selectedCoursesContainer.innerHTML = '';
+
+            if (selectedCourses.size > 0) {
+                previewContainer.style.display = 'block';
+
+                selectedCourses.forEach(course => {
+                    const courseTitle = course.querySelector('.course-title').textContent;
+                    const courseItem = document.createElement('div');
+                    courseItem.className = 'selected-course-item';
+                    courseItem.innerHTML = `
+                <span>${courseTitle.substring(0, 30)}...</span>
+                <span class="remove-course">×</span>
+            `;
+
+                    courseItem.querySelector('.remove-course').addEventListener('click', () => {
+                        selectedCourses.delete(course);
+                        course.classList.remove('selected');
+                        updatePreviewPanel();
+                    });
+
+                    selectedCoursesContainer.appendChild(courseItem);
+                });
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        }
+
+        // Handle compare button click
+        previewContainer.querySelector('.compare-btn').addEventListener('click', () => {
+            if (selectedCourses.size < 2) {
+                alert('Please select at least 2 courses to compare');
+                return;
+            }
+            compareMultipleCourses(Array.from(selectedCourses));
+        });
+
+        // Handle cancel button click
+        previewContainer.querySelector('.cancel-btn').addEventListener('click', () => {
+            selectedCourses.forEach(course => course.classList.remove('selected'));
+            selectedCourses.clear();
+            updatePreviewPanel();
+        });
+
+        function compareMultipleCourses(courses) {
+            const coursesDetails = courses.map(course => extractCourseDetails(course));
+            showComparisonModal(coursesDetails);
+        }
+
+        function showComparisonModal(courses) {
+            if (!document.querySelector('.comparison-modal')) {
+                const modal = document.createElement('div');
+                modal.className = 'comparison-modal';
+                const backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop';
+                document.body.appendChild(modal);
+                document.body.appendChild(backdrop);
+            }
+
+            const modal = document.querySelector('.comparison-modal');
+            const backdrop = document.querySelector('.modal-backdrop');
+
+            // Create table headers
+            let tableHTML = `
+        <div class="modal-header">
+            <h2>Course Comparison (${courses.length} Courses)</h2>
+            <button class="modal-close-btn" onclick="closeComparisonModal()">×</button>
+        </div>
+        <table class="comparison-table">
+            <tr>
+                <th>Features</th>
+                ${courses.map(course => `
+                    <th>
+                        <div style="margin-bottom: 8px;">${course.title}</div>
+                        <div style="color: #6a6f73; font-size: 0.9em;">${course.instructor}</div>
+                    </th>
+                `).join('')}
+            </tr>
+            <tr>
+                <td class="feature-label">Rating</td>
+                ${courses.map(course => `
+                    <td>
+                        <div class="rating-highlight">${course.rating}</div>
+                        <div style="color: #6a6f73; font-size: 0.9em;">
+                            <span style="color: #eb8a2f;">★★★★★</span>
+                            ${course.reviewCount}
+                        </div>
+                    </td>
+                `).join('')}
+            </tr>
+            <tr>
+                <td class="feature-label">Price</td>
+                ${courses.map(course => `
+                    <td class="price-highlight">${course.price}</td>
+                `).join('')}
+            </tr>
+            <tr>
+                <td class="feature-label">Bestseller Status</td>
+                ${courses.map(course => `
+                    <td>
+                        <span class="bestseller-check">
+                            ${course.isBestseller ? 
+                                '<span title="Bestseller">🏆</span>' : 
+                                '<span style="color: #6a6f73;">-</span>'}
+                        </span>
+                    </td>
+                `).join('')}
+            </tr>
+            <tr>
+                <td class="feature-label">Actions</td>
+                ${courses.map(() => `
+                    <td>
+                        <button class="signup-btn" style="width: 100%; margin-bottom: 8px;">Add to cart</button>
+                        <button class="login-btn" style="width: 100%;">Add to wishlist</button>
+                    </td>
+                `).join('')}
+            </tr>
+        </table>
+    `;
+            modal.innerHTML = tableHTML;
+            modal.style.display = 'block';
+            backdrop.style.display = 'block';
+        }
+
+        function closeComparisonModal() {
+            const modal = document.querySelector('.comparison-modal');
+            const backdrop = document.querySelector('.modal-backdrop');
+            modal.style.display = 'none';
+            backdrop.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>
